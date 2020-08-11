@@ -5,15 +5,10 @@
 	
 	
 	
-	/* Onemli Not:  Hocam Merhaba. Input 1 ve 2 calısırken 3 calısmıyor. Bunun algoritmayla bir alakası olmadıgını, tamamen size boyutuyla alakalı oldugunu dusunuyorum.
-	MAX diye belirttigim degeri 200000 yaptıgım zaman calısır diye dusunuyordum fakat sanırım sayının cok yuksek olması sebebiyle program dahi acılmayabiliyor. (Hatta MAX ı o kadar yukse secince
-	input 1 ve 2 dahi hata verebiliyor). Bu yuzden input3 orneklerini atamıyorum size. Input 1 ve 2 ornegi koymak durumundayım rapora gorebilmeniz icin cıktıları. */
-		
-	
 	
 		struct Queue 
 	{ 
-	    int front, rear, size; 	// quenun basını sonunu sizeını tutan elemanlar
+	    int front, rear, size; 	// quenun basÄ±nÄ± sonunu sizeÄ±nÄ± tutan elemanlar
 	    unsigned capacity; 		// queuenun kapasitesi
 	    int* array; 			
 	}; 
@@ -21,16 +16,16 @@
 
 
 	
-	struct node {				// bizim graftaki nodelarımız
-		char vertexName[150]; 	// aktor veya filmin adı
-		int vertex;				// vertexin numarası	
+	struct node {				// bizim graftaki nodelarÄ±mÄ±z
+		char vertexName[150]; 	// aktor veya filmin adÄ±
+		int vertex;				// vertexin numarasÄ±	
 		struct node* next; 		// gezebilmemiz icin nextimiz
 		};
 		
 	
 	struct Graph { 
-		int numVertices; 			// adjLists icin gereken vertex sayımız
-		struct node** adjLists; 	// grafımızı olusturmamızda yardım eden adjList
+		int numVertices; 			// adjLists icin gereken vertex sayÄ±mÄ±z
+		struct node** adjLists; 	// grafÄ±mÄ±zÄ± olusturmamÄ±zda yardÄ±m eden adjList
 		};
 	
 	
@@ -40,32 +35,32 @@
 		struct node* newNode= malloc(sizeof(struct node)); 				// yeni node u olusturuyoruz
 		
 		
-		newNode->vertex=vertexNo; 										// vertex sayısını, vertex ismini yerlestirip nextini null olarak belirliyoruz
+		newNode->vertex=vertexNo; 										// vertex sayÄ±sÄ±nÄ±, vertex ismini yerlestirip nextini null olarak belirliyoruz
 		strcpy(newNode->vertexName,vertex_name);						
 		newNode->next = NULL; 
 		return newNode; 
 		}
 	
 	
-	struct Graph* createGraph(int vertices) { 						// Grafı olusturma
+	struct Graph* createGraph(int vertices) { 						// GrafÄ± olusturma
 		int i; 														// adjListi NULL lamak icin olusturuyoruz
 		struct Graph* graph = malloc(sizeof(struct Graph)); 
 		
-		graph->numVertices= vertices; 									//vertex numberı yerlestirdik
-		graph->adjLists= malloc(vertices * sizeof(struct node*));		// adjListe kac verteximiz var ise o kadar yer acıyoruz
+		graph->numVertices= vertices; 									//vertex numberÄ± yerlestirdik
+		graph->adjLists= malloc(vertices * sizeof(struct node*));		// adjListe kac verteximiz var ise o kadar yer acÄ±yoruz
 		
 		for (i= 0; i< vertices; i++) 
-		graph->adjLists[i] = NULL; 								// adjListin ilk önce NULL poizsyona getiriyoruz
+		graph->adjLists[i] = NULL; 								// adjListin ilk Ã¶nce NULL poizsyona getiriyoruz
 		return graph; 	
 		}
 	
 	
 	void addEdge(struct Graph* graph, int src, int dest,char vertexName1[],char vertexName2[]) {		// dugumleri birlestirme
-	 struct node* newNode= createNode(vertexName2,dest); 					// birlestirecegimiz nodelardan birini yaratıyoruz
-	 newNode->next = graph->adjLists[src]; 									// adjListte baglancagı node a baglıyoruz
-	 graph->adjLists[src] = newNode; 										// baglanacagı adjListe nodeu ekliyoruz		
+	 struct node* newNode= createNode(vertexName2,dest); 					// birlestirecegimiz nodelardan birini yaratÄ±yoruz
+	 newNode->next = graph->adjLists[src]; 									// adjListte baglancagÄ± node a baglÄ±yoruz
+	 graph->adjLists[src] = newNode; 										// baglanacagÄ± adjListe nodeu ekliyoruz		
 	 newNode= createNode(vertexName1,src); 									
-	 newNode->next = graph->adjLists[dest]; 								// aynı islemi baglayacagımız ikinci dugum icin yapıyoruz
+	 newNode->next = graph->adjLists[dest]; 								// aynÄ± islemi baglayacagÄ±mÄ±z ikinci dugum icin yapÄ±yoruz
 	 graph->adjLists[dest] = newNode; 
 	 } 
 		
@@ -74,10 +69,10 @@
 	
 	struct Queue* createQueue(unsigned capacity) 							// queue olusturma kapasite kadar olusturabiliriz
 	{ 
-	    struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue)); 	// queue ya yer acıyoruz
+	    struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue)); 	// queue ya yer acÄ±yoruz
 	    queue->capacity = capacity; 											// kapasitesini belirliyoruz
 	    queue->front = queue->size = 0;  										// frontu basa koyuyoruz
-	    queue->rear = capacity - 1;  											// enqueue islemi yaparken kontrol etmemiz gerekiyor kapasiteyi rearı kapasitenin bir altı olarak belirliyoruz
+	    queue->rear = capacity - 1;  											// enqueue islemi yaparken kontrol etmemiz gerekiyor kapasiteyi rearÄ± kapasitenin bir altÄ± olarak belirliyoruz
 	    queue->array = (int*) malloc(queue->capacity * sizeof(int)); 			// ve queue arrayimizi olusturuyoruz
 	    return queue; 
 	} 
@@ -111,16 +106,16 @@
 	int dequeue(struct Queue* queue) 
 	{ 
 	    if (isEmpty(queue)) 
-	        return INT_MIN; 					// eger queue bos ise bisey dondurmemeiz lazım
-	    int item = queue->array[queue->front]; 		// Listenin basındaki elemanı alıyoruz
+	        return INT_MIN; 					// eger queue bos ise bisey dondurmemeiz lazÄ±m
+	    int item = queue->array[queue->front]; 		// Listenin basÄ±ndaki elemanÄ± alÄ±yoruz
 	    queue->front = (queue->front + 1)%queue->capacity; 			// listenin frontunu bir ilerletiyoruz
-	    queue->size = queue->size - 1; 				// size ı 1 azaltıyoruz
+	    queue->size = queue->size - 1; 				// size Ä± 1 azaltÄ±yoruz
 	    return item; 
 	} 
 	
 	
 	
-	int front(struct Queue* queue) 			// listenin basındaki elemanı alıp donduruyoruz
+	int front(struct Queue* queue) 			// listenin basÄ±ndaki elemanÄ± alÄ±p donduruyoruz
 	{ 
 	    if (isEmpty(queue)) 
 	        return INT_MIN; 						
@@ -128,7 +123,7 @@
 	} 
 	
 	
-	int rear(struct Queue* queue) 			// listenin sonundaki elemanı alıp donduruyoruz
+	int rear(struct Queue* queue) 			// listenin sonundaki elemanÄ± alÄ±p donduruyoruz
 	{ 
 	    if (isEmpty(queue)) 
 	        return INT_MIN; 
@@ -140,26 +135,26 @@
 	
 		
 	
-	void yazdir (int selected,int count_index,int *count,char yenidegiskenler[MAX][150],char *isim,int * aradigimkb,char parent[MAX][150],int kevin_index){	// yazdırma fonksiyonu
+	void yazdir (int selected,int count_index,int *count,char yenidegiskenler[MAX][150],char *isim,int * aradigimkb,char parent[MAX][150],int kevin_index){	// yazdÄ±rma fonksiyonu
 		
 		int i;
 		
-		if(selected==1){		// eger kullanıcı her kb sayısından kacar adet oldugunu gormek istemisse buraya giriyoruz
+		if(selected==1){		// eger kullanÄ±cÄ± her kb sayÄ±sÄ±ndan kacar adet oldugunu gormek istemisse buraya giriyoruz
 		printf("kb sayisi 0 olanlar 1 \n");
 		for(i=1;i<=count_index;i++)
-			printf("kb sayisi %d olanlar %d \n",i,count[i]);		//count adlı her kb sayısından kacar adet oldugunu tutan listemi yazdırıyorum
+			printf("kb sayisi %d olanlar %d \n",i,count[i]);		//count adlÄ± her kb sayÄ±sÄ±ndan kacar adet oldugunu tutan listemi yazdÄ±rÄ±yorum
 	
 	}
 	
-	char  yazdirma[4][150]; // Hangi oyunucunun , hangi oyuncuyla aynı filmde oynadıgını tutan listem
+	char  yazdirma[4][150]; // Hangi oyunucunun , hangi oyuncuyla aynÄ± filmde oynadÄ±gÄ±nÄ± tutan listem
 	
-	int k=0;		// birazdan yazdirma dizisinde gezerken kullanacagım indis
+	int k=0;		// birazdan yazdirma dizisinde gezerken kullanacagÄ±m indis
 	
 
-	if(selected==2){	// eger kullanıcı Bir aktorun kb a olan uzaklıgını ve nasıl iliski kurdugunu istiyorsa buraya giriyoruz
+	if(selected==2){	// eger kullanÄ±cÄ± Bir aktorun kb a olan uzaklÄ±gÄ±nÄ± ve nasÄ±l iliski kurdugunu istiyorsa buraya giriyoruz
 				
 		i=0;
-		while(strcmp(isim,yenidegiskenler[i])) 				// aratılan film yada aktorun adresini buluyorum.
+		while(strcmp(isim,yenidegiskenler[i])) 				// aratÄ±lan film yada aktorun adresini buluyorum.
 				i++;
 		
 		if(aradigimkb[i]==10000){
@@ -170,20 +165,20 @@
 		
 		printf("%s nin kevin bacon sayisi: %d\n",isim,aradigimkb[i]);
 		
-		strcpy(yazdirma[k],isim); 	// guzel gozukmesi acısından burada alıyorum il aktorumu
+		strcpy(yazdirma[k],isim); 	// guzel gozukmesi acÄ±sÄ±ndan burada alÄ±yorum il aktorumu
 		k++;
 		
 		
 		
 		while(i!=kevin_index){			// kevin bacona ulasana kadar devam ediyorum
 			
-			if(k==3){		// eger yazdırma islemi icin hazırsam giriyorum
+			if(k==3){		// eger yazdÄ±rma islemi icin hazÄ±rsam giriyorum
 				
-				printf("%s - %s : %s  \n",yazdirma[0],yazdirma[2], yazdirma[1]);		// hangi aktorun hangi aktorle iliski kurdugu ve hangi filmde oynadıklarını yazdırıyorum
-				k=1;																	// tekrar yazdırma islemi hazır olana kadar donmek icin k yı 1 yapıyorum
-				strcpy(yazdirma[0],yazdirma[2]); 										// son aktorden devam edecegim icin son aktoru 0. indise kopyalıyorum
+				printf("%s - %s : %s  \n",yazdirma[0],yazdirma[2], yazdirma[1]);		// hangi aktorun hangi aktorle iliski kurdugu ve hangi filmde oynadÄ±klarÄ±nÄ± yazdÄ±rÄ±yorum
+				k=1;																	// tekrar yazdÄ±rma islemi hazÄ±r olana kadar donmek icin k yÄ± 1 yapÄ±yorum
+				strcpy(yazdirma[0],yazdirma[2]); 										// son aktorden devam edecegim icin son aktoru 0. indise kopyalÄ±yorum
 			}
-			strcpy(yazdirma[k],parent[i]);			// yazdirma listesine i. aktor veya filmin olsutugu aktor ya da filmi aktarıyorum
+			strcpy(yazdirma[k],parent[i]);			// yazdirma listesine i. aktor veya filmin olsutugu aktor ya da filmi aktarÄ±yorum
 			
 			i=0;
 			while(strcmp(yazdirma[k],yenidegiskenler[i])) 				// film yada aktorun adresini buluyorum. 
@@ -193,7 +188,7 @@
 		
 		}	
 	
-		printf("%s - %s : %s  \n",yazdirma[0],yazdirma[2], yazdirma[1]);	// ne son kevin baconlı satırı da yazdırıyorum
+		printf("%s - %s : %s  \n",yazdirma[0],yazdirma[2], yazdirma[1]);	// ne son kevin baconlÄ± satÄ±rÄ± da yazdÄ±rÄ±yorum
 
 	}		
 	}
@@ -213,16 +208,16 @@
 		int i=0,j;
 		int result,ekleme=0,k,z=0;
 		
-		char *a;										// tum satırları strtok ile gezerken / ile ayırdıgım elemanları tuttugum iki char array
+		char *a;										// tum satÄ±rlarÄ± strtok ile gezerken / ile ayÄ±rdÄ±gÄ±m elemanlarÄ± tuttugum iki char array
 		char *b;
 		
-		char dosya[30];									// input alacagım dosyanın adı
-		char buf[MAX];									// input alırken kullanacagım buffer
-		char isim[200];									// kullanıcının aramak istedigi isim
-		char bos[10];									// gets islemi sırasında olusan hatayı onlemek adına yaratılmıs bir string
+		char dosya[30];									// input alacagÄ±m dosyanÄ±n adÄ±
+		char buf[MAX];									// input alÄ±rken kullanacagÄ±m buffer
+		char isim[200];									// kullanÄ±cÄ±nÄ±n aramak istedigi isim
+		char bos[10];									// gets islemi sÄ±rasÄ±nda olusan hatayÄ± onlemek adÄ±na yaratÄ±lmÄ±s bir string
 		
-		char degiskenler[8000][150];					// Tum / ile ayrılmış olan elemanları tuttugum liste
-		int selected;									// Kullanıcının hangi islemi yapmak istedigini anladıgım deger 1 ise kb degerlerini yazdırır, 2 ise verilen ismin kb olan uzaklıgı gosterilir.
+		char degiskenler[8000][150];					// Tum / ile ayrÄ±lmÄ±ÅŸ olan elemanlarÄ± tuttugum liste
+		int selected;									// KullanÄ±cÄ±nÄ±n hangi islemi yapmak istedigini anladÄ±gÄ±m deger 1 ise kb degerlerini yazdÄ±rÄ±r, 2 ise verilen ismin kb olan uzaklÄ±gÄ± gosterilir.
 		
 		printf("Okumak istediginiz dosyanin adini giriniz: ");
 		scanf("%s",&dosya);
@@ -231,45 +226,45 @@
 		scanf("%d",&selected);
 		
 		if(selected==2){
-			gets(bos);												// onceki inputta entera basıldıgında hata cıkmaması icin kullanılıyor
+			gets(bos);												// onceki inputta entera basÄ±ldÄ±gÄ±nda hata cÄ±kmamasÄ± icin kullanÄ±lÄ±yor
 			printf("Ismi giriniz: ");
-			gets(isim); 											// kullanıcının kevin baconla mesafesini merak ettigi ismi alıyoruz
+			gets(isim); 											// kullanÄ±cÄ±nÄ±n kevin baconla mesafesini merak ettigi ismi alÄ±yoruz
 			
 		}
 
 		
-		FILE * ptr;													// ulasacagımız dosya icin bir file pointer yaratıyoruz
-		FILE * fp;													// daha sonra dosyaın basından itibaren tekrar gezecegimiz icin 2. fıle pointerı tanımlıyoruz
+		FILE * ptr;													// ulasacagÄ±mÄ±z dosya icin bir file pointer yaratÄ±yoruz
+		FILE * fp;													// daha sonra dosyaÄ±n basÄ±ndan itibaren tekrar gezecegimiz icin 2. fÄ±le pointerÄ± tanÄ±mlÄ±yoruz
 		
-		ptr=fopen(dosya,"r");										// dosyayı aciyoruz
+		ptr=fopen(dosya,"r");										// dosyayÄ± aciyoruz
 		
 		 
-		while(fgets(buf,MAX,ptr)){			// Dosyanın sonuna kadar devam ediyor ve satır satır alıyor
+		while(fgets(buf,MAX,ptr)){			// DosyanÄ±n sonuna kadar devam ediyor ve satÄ±r satÄ±r alÄ±yor
 			
-			a=strtok(buf,"\n");				// Herhangi bir sorun cıkmaması acısından once satıra gore ayırıyorum
-			b=strtok(a,"/");				// Ardından elemanlarımı '/' isaretine gore ayırıyorum
-			while(b!=NULL){					// O satırın sonuna kadar '/' isaretiyle ayırmaya devam et
+			a=strtok(buf,"\n");				// Herhangi bir sorun cÄ±kmamasÄ± acÄ±sÄ±ndan once satÄ±ra gore ayÄ±rÄ±yorum
+			b=strtok(a,"/");				// ArdÄ±ndan elemanlarÄ±mÄ± '/' isaretine gore ayÄ±rÄ±yorum
+			while(b!=NULL){					// O satÄ±rÄ±n sonuna kadar '/' isaretiyle ayÄ±rmaya devam et
 				
-				strcpy(degiskenler[i],b);		// aldıgın elemanı degiskenler listesine koy
+				strcpy(degiskenler[i],b);		// aldÄ±gÄ±n elemanÄ± degiskenler listesine koy
 				b=strtok(NULL,"/");				// bir sonraki elemana gec
-				i++;							// degiskenler listesinin sonraki elemanına gec
+				i++;							// degiskenler listesinin sonraki elemanÄ±na gec
 			
 		}	
 	}		
 	
 
 	
-	char yenidegiskenler[i][150];			// degiskenler listesinde tutulan elemanların bazıları 1 den fazla kez listede gectiginden adjLists icin vertex number hesaplanması ve daha sonradan
-											// isime cok yarayacagı icin her elemanın birer kez gececegi yenidegiskenler listem. i tane eleman oldugundan bu sekilde boyutunun belirlenmesi yeterli
+	char yenidegiskenler[i][150];			// degiskenler listesinde tutulan elemanlarÄ±n bazÄ±larÄ± 1 den fazla kez listede gectiginden adjLists icin vertex number hesaplanmasÄ± ve daha sonradan
+											// isime cok yarayacagÄ± icin her elemanÄ±n birer kez gececegi yenidegiskenler listem. i tane eleman oldugundan bu sekilde boyutunun belirlenmesi yeterli
 	
 	
-	for(j=0;j<i;j++){					// degiskenler listesinin tum elemanları geziyorum
+	for(j=0;j<i;j++){					// degiskenler listesinin tum elemanlarÄ± geziyorum
 		
-		strcpy(a,degiskenler[j]);		// elemanımı bir stringe atıp sonraki elemanlarla karsilastiriyorum tekrar geciyor mu diye
+		strcpy(a,degiskenler[j]);		// elemanÄ±mÄ± bir stringe atÄ±p sonraki elemanlarla karsilastiriyorum tekrar geciyor mu diye
 		
 		for(k=j+1;k<i;k++){				// karsilastirmaya sonraki elemandan basliyorum
 			
-			result=strcmp(a,degiskenler[k]);			// listede kendinden sonra bidaha kendisi geçiyorsa eklemiyor atlıyor 														// ve en sonda kendinden sonra eleman kalmayacıgı icin en son esdeger elemanı listeye koyuyor
+			result=strcmp(a,degiskenler[k]);			// listede kendinden sonra bidaha kendisi geÃ§iyorsa eklemiyor atlÄ±yor 														// ve en sonda kendinden sonra eleman kalmayacÄ±gÄ± icin en son esdeger elemanÄ± listeye koyuyor
 		
 			if(result==0){
 				ekleme=1;								// eleman sonradan da gectigi icin eklememesi gerektigini belirtiyor
@@ -279,14 +274,14 @@
 		
 		if(ekleme==0){
 			
-			strcpy(yenidegiskenler[z],a);			// eger eklenmesinde sorun yoksa sorun yoksa ekliyor ve z yi arttıryor. Bu z degerimiz ileride cok kullanacagımız 
-													// yenidegiskenler listemizin boyutunu belirtecek aynı zamanda vertex sayimiz olacak
+			strcpy(yenidegiskenler[z],a);			// eger eklenmesinde sorun yoksa sorun yoksa ekliyor ve z yi arttÄ±ryor. Bu z degerimiz ileride cok kullanacagÄ±mÄ±z 
+													// yenidegiskenler listemizin boyutunu belirtecek aynÄ± zamanda vertex sayimiz olacak
 			z++;
 		}	
 		ekleme=0;		// kontrollere devam edebilmek icin resetliyoruz		
 	}
 		
-	int sorunYok=0;			// kelimenın var olup olmadıgı kontrolu
+	int sorunYok=0;			// kelimenÄ±n var olup olmadÄ±gÄ± kontrolu
 		
 	for(i=0;i<z;i++){
 		
@@ -303,27 +298,27 @@
 	
 	
 	struct Graph * graph;			
-	graph=createGraph(z);		// z vertex sayımız oldugundan adjListsimizin de boyutu olacak. adjList olustu
+	graph=createGraph(z);		// z vertex sayÄ±mÄ±z oldugundan adjListsimizin de boyutu olacak. adjList olustu
 	
 
 	/////////////////// AD EDGE /////////////////
 	
 	
-	fp=fopen(dosya,"r");  		// dosyayı tekrar bastan itibaren gezmem gerektigi icin tekrar acıyorum
+	fp=fopen(dosya,"r");  		// dosyayÄ± tekrar bastan itibaren gezmem gerektigi icin tekrar acÄ±yorum
 
 	int movie_index;		// filmin adresi
-	struct node* newNode;	// yeni node referansı
-	char movie[100];	// film adını tutmak icin
-	char actor[50];		// actor adını tutmak icin
-	char *d;			// her satırı tutmak icin gereken string
-	char *e;			// her satırda bulunan '/' ile ayrılan elemanları tutmak icin gereken string
+	struct node* newNode;	// yeni node referansÄ±
+	char movie[100];	// film adÄ±nÄ± tutmak icin
+	char actor[50];		// actor adÄ±nÄ± tutmak icin
+	char *d;			// her satÄ±rÄ± tutmak icin gereken string
+	char *e;			// her satÄ±rda bulunan '/' ile ayrÄ±lan elemanlarÄ± tutmak icin gereken string
 	
 	
-	while(fgets(buf,MAX,fp)){	// dosyanın sonuna kadar devam et		
+	while(fgets(buf,MAX,fp)){	// dosyanÄ±n sonuna kadar devam et		
 					
-			d=strtok(buf,"\n");		// satırı d ye al
-			e=strtok(d,"/");		//  	'/' ile ayrılmıs elemanları e ye al
-			strcpy(movie,e);		// filmin adını kopyala			
+			d=strtok(buf,"\n");		// satÄ±rÄ± d ye al
+			e=strtok(d,"/");		//  	'/' ile ayrÄ±lmÄ±s elemanlarÄ± e ye al
+			strcpy(movie,e);		// filmin adÄ±nÄ± kopyala			
 		
 			j=0;
 			while(strcmp(movie,yenidegiskenler[j]))		// filmin indexini bul
@@ -333,13 +328,13 @@
 				
 			e=strtok(NULL,"/");					// aktorlere gec
 		
-			while(e!=NULL){		// aynı satırdaki yani o filmin aktorleri bitene kadar
+			while(e!=NULL){		// aynÄ± satÄ±rdaki yani o filmin aktorleri bitene kadar
 					
 				i=0;
-				while(strcmp(e,yenidegiskenler[i]))			// aktorlerın indisini bul 
+				while(strcmp(e,yenidegiskenler[i]))			// aktorlerÄ±n indisini bul 
 				i++;
 			
-				addEdge(graph,movie_index,i,movie,e);		// aktor ile film arasındaki edge i olustur yani graph olusuyor
+				addEdge(graph,movie_index,i,movie,e);		// aktor ile film arasÄ±ndaki edge i olustur yani graph olusuyor
 				
 				e=strtok(NULL,"/");
 		}		
@@ -348,107 +343,107 @@
  	
  		
 
-	////////////////////////BFS BAŞLANGICI //////////////////////////////////////////
+	////////////////////////BFS BAÅLANGICI //////////////////////////////////////////
 	
 		
 	int kevin_index; 	// kevin baconun bulundugu adres
 	
-	char kevin[12]={'B','a','c','o','n',',',' ','K','e','v','i','n'}; 	// kevin baconu kevin isimli chara atadım
+	char kevin[12]={'B','a','c','o','n',',',' ','K','e','v','i','n'}; 	// kevin baconu kevin isimli chara atadÄ±m
 		
 
-	i=z;		// i yi son elemandan baslattım	
-	while(strcmp(kevin,yenidegiskenler[i]))		// öndende başlatabilirdim ama en son kevin baconu bulacagı icin daha kısa surer
+	i=z;		// i yi son elemandan baslattÄ±m	
+	while(strcmp(kevin,yenidegiskenler[i]))		// Ã¶ndende baÅŸlatabilirdim ama en son kevin baconu bulacagÄ± icin daha kÄ±sa surer
 				i--;
 
 	kevin_index=i;		//k evin baconun adresi belirlendi
 		
-	int visited[z];		// queue da kullanacıgım o eleman daha once ziyaret edildimi kontrolu ıcın visited dizimi olusturdum
+	int visited[z];		// queue da kullanacÄ±gÄ±m o eleman daha once ziyaret edildimi kontrolu Ä±cÄ±n visited dizimi olusturdum
 	
 	for(i=0;i<z;i++)		
-		visited[i]=0;		// her indexin visitedını 0 yaptım bu gezilmedi anlamına geliyor
+		visited[i]=0;		// her indexin visitedÄ±nÄ± 0 yaptÄ±m bu gezilmedi anlamÄ±na geliyor
 	
 	
-	int kb_sayisi=0;		//kb sayısını belirleycek olan degisken
+	int kb_sayisi=0;		//kb sayÄ±sÄ±nÄ± belirleycek olan degisken
 	int count[100];			// her kb sayisindan kacar tane var belirleyen degisken
 	
 	for(i=0;i<100;i++)		
-		count[i]=0;			// tum kb sayılarından basta 0 tane var
+		count[i]=0;			// tum kb sayÄ±larÄ±ndan basta 0 tane var
 	
 		
-	int count_index=0;			// kb adımlarında kullanılacak olan countun indexini degistirecek olan degisken
+	int count_index=0;			// kb adÄ±mlarÄ±nda kullanÄ±lacak olan countun indexini degistirecek olan degisken
 	struct node* temp;
 	int v,exclamationCheck=1;			// Bu degisken 1 ise bir film var elimizde , 0 ise bir aktor var elimizde .
-										// en son filmde miydi aktörde miydi onu belirtiyor, filmden aktöre geçince kb_sayisi artıyor
+										// en son filmde miydi aktÃ¶rde miydi onu belirtiyor, filmden aktÃ¶re geÃ§ince kb_sayisi artÄ±yor
 	
-	struct Queue* queue = createQueue(z);		// queue yu eleman sayım olan z ye gore olusturdum
+	struct Queue* queue = createQueue(z);		// queue yu eleman sayÄ±m olan z ye gore olusturdum
 	
-	char kelime[150];										// birazdan queue icinde bfs yaparken ortaya cıkan film ve oyuncu isimlerini bir sure saklayacagım string
-	enqueue(queue,kevin_index);								// En başta kevin baconı queue ya atıyorum
+	char kelime[150];										// birazdan queue icinde bfs yaparken ortaya cÄ±kan film ve oyuncu isimlerini bir sure saklayacagÄ±m string
+	enqueue(queue,kevin_index);								// En baÅŸta kevin baconÄ± queue ya atÄ±yorum
 	visited[kevin_index]=1;									// kevin baconu visited olarak isaretliyorum
 	
-	char kontrol_kelime[100];								// birazdan alınan bir elemanın bir film mi yoksa bir aktor mu belirlenmesi icin kullanılacak string
-	int	aradigimkb[z];										// her aktorun kb sayısını kendi inidisyle bulacagımız liste
+	char kontrol_kelime[100];								// birazdan alÄ±nan bir elemanÄ±n bir film mi yoksa bir aktor mu belirlenmesi icin kullanÄ±lacak string
+	int	aradigimkb[z];										// her aktorun kb sayÄ±sÄ±nÄ± kendi inidisyle bulacagÄ±mÄ±z liste
 	
 	
 	for(i=0;i<z;i++)
-		aradigimkb[i]=10000;								// oncelikle tum aktorlerın kb_sayisini 10000 yapıyorum
+		aradigimkb[i]=10000;								// oncelikle tum aktorlerÄ±n kb_sayisini 10000 yapÄ±yorum
 
-	char parent[z][150];									// bfs sırasında olusan degiskenin kim tarafından olusturuldugunu gosteren liste
+	char parent[z][150];									// bfs sÄ±rasÄ±nda olusan degiskenin kim tarafÄ±ndan olusturuldugunu gosteren liste
 			
 
-	// queue islemlerinin basladıgı yer
+	// queue islemlerinin basladÄ±gÄ± yer
 	
 	while(!isEmpty(queue)){								// queue bos kalana kadar devam et
 		
-		v=dequeue(queue);								// queuenun başını cıkar komuslarını gezmeye basla
+		v=dequeue(queue);								// queuenun baÅŸÄ±nÄ± cÄ±kar komuslarÄ±nÄ± gezmeye basla
 			
-		temp = graph->adjLists[v];						// cıkartıgın vertex nolu adjliste git, buradan komsuları queue ya atacagız
+		temp = graph->adjLists[v];						// cÄ±kartÄ±gÄ±n vertex nolu adjliste git, buradan komsularÄ± queue ya atacagÄ±z
 						
-		strcpy(kontrol_kelime,graph->adjLists[v]->vertexName);		//  dequeue ettigim kelimeyi kontrol etmek icin kontrol_kelime de saklıyorum
+		strcpy(kontrol_kelime,graph->adjLists[v]->vertexName);		//  dequeue ettigim kelimeyi kontrol etmek icin kontrol_kelime de saklÄ±yorum
 
 	
 			// kevin bacon sayisi bulma islemi burada gerceklesiyor
 	
-		if(exclamationCheck==1){			// eger exclamationCheck==1 ise bu kelimeden once dequeue ettigimiz kelime bir filmmis anlamına geliyor
+		if(exclamationCheck==1){			// eger exclamationCheck==1 ise bu kelimeden once dequeue ettigimiz kelime bir filmmis anlamÄ±na geliyor
 			 
 			 
-		  if(strchr(kontrol_kelime, '(') != NULL)  {		// suan yeni dequeue ettigimiz kelimede filmse ife giriyor.	'(' içeriyor mu yani film mi dizi mi?
+		  if(strchr(kontrol_kelime, '(') != NULL)  {		// suan yeni dequeue ettigimiz kelimede filmse ife giriyor.	'(' iÃ§eriyor mu yani film mi dizi mi?
 		    exclamationCheck = 1; 					// film olarak isaretliyoruz
 		  }
 		  
 		  else{														// eger bu kelimeden onceki deger filmse ve simdi aktore gecilmisse
-		  	kb_sayisi++;											// kb_sayisi ni arttırıyorum count indextte kb sayisinin degerini sakladıgı icin artıyor
+		  	kb_sayisi++;											// kb_sayisi ni arttÄ±rÄ±yorum count indextte kb sayisinin degerini sakladÄ±gÄ± icin artÄ±yor
 		  	count_index++;					
 		  	exclamationCheck=0;										// en son dequeue edilenin bir aktor oldugunu isaretliyorum
 	
 		  }		
 		}
 		
-		else{								// eger onceki kelime aktorse sadece yeni kelime film mi kontrolu yapıp filmse degeri guncelliyorum
+		else{								// eger onceki kelime aktorse sadece yeni kelime film mi kontrolu yapÄ±p filmse degeri guncelliyorum
 			
 			if(strchr(kontrol_kelime, '(') != NULL) {
-		    exclamationCheck = 1; 							// ( içeriyor mu yani film m i dizi mi?
+		    exclamationCheck = 1; 							// ( iÃ§eriyor mu yani film m i dizi mi?
 		  }			
 		}
 	   
 
-		while (temp) {		// dequeue ettigim degerin tum komsularını burada geziyorum
+		while (temp) {		// dequeue ettigim degerin tum komsularÄ±nÄ± burada geziyorum
 				
-		strcpy(kelime,temp->vertexName);		// yeni degeri kelimeye kopyalıyorum
+		strcpy(kelime,temp->vertexName);		// yeni degeri kelimeye kopyalÄ±yorum
 		
 		i=0;
 		while(strcmp(kelime,yenidegiskenler[i])) 				// film yada aktorun adresini buluyorum.
 				i++;
 				
-		if(visited[i]==0){							// eger daha once gezilmediyse bu aktor veya filmi queue ya atıyorum gezildiyse atmıyorum
+		if(visited[i]==0){							// eger daha once gezilmediyse bu aktor veya filmi queue ya atÄ±yorum gezildiyse atmÄ±yorum
 		
 			enqueue(queue,i);		
 			
 			
 			if(exclamationCheck==0){	//eger bu bir aktorse
-				count[count_index]++;		// kb sayısındaki aktor miktarını arttırıyorum
+				count[count_index]++;		// kb sayÄ±sÄ±ndaki aktor miktarÄ±nÄ± arttÄ±rÄ±yorum
 							
-				aradigimkb[i]=kb_sayisi;	// ve bu aktorun kb sayısını yerlestiriyorum								
+				aradigimkb[i]=kb_sayisi;	// ve bu aktorun kb sayÄ±sÄ±nÄ± yerlestiriyorum								
 			}
 						
 			strcpy(parent[i],yenidegiskenler[v]);	// olusan aktor veya filmin hangi aktor veya filmden olsutugunu parent listesine yerlestiriyorum
